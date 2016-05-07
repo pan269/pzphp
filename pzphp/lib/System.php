@@ -20,7 +20,7 @@ class System
 	public static function LoadPlugin($plugin_name,$dir='')
 	{
 		if(!class_exists($plugin_name)){
-            require APP_DIR.DS.'plugin'.$dir.DS.$plugin_name.'.php';
+            require PZ_DIR.DS.'plugin'.$dir.DS.$plugin_name.'.php';
 		}
 	}
 

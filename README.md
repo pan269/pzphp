@@ -17,6 +17,7 @@ PZphp
 -static				--- 静态文件 <br />
 --js				--- js文件<br />
 --css				--- css文件<br />
+--font 				--- 字体<br/>
 --img 				--- 图片文件<br />
 -upload				--- 上传文件 <br />
 

@@ -15,7 +15,7 @@ class Pz
     public static function start($ini='')
     {
         if(!$ini){
-            $ini = PZ_DIR.DS."config".DS.'config.ini';
+            $ini = APP_DIR.DS."config".DS.'config.ini';
         }
         //注册自动加载类
         spl_autoload_register('Pz::pzAutoload');

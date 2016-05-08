@@ -2,7 +2,12 @@
 define('DS',        DIRECTORY_SEPARATOR );    //斜杠
 define('WEB_DIR',   ( __DIR__ ));       //根目录
 define('PZ_DIR',    ( __DIR__ ).DS."pzphp");     //核心文件目录
+
+
+
 define('APP_DIR',   ( __DIR__ ).DS."app");  //业务代码目录
+
+// define('APP_DIR',   ( __DIR__ ).DS."app_".$_SERVER['SERVER_NAME']);  //业务代码目录  多APP部署模式
 
 require PZ_DIR.DS.'Pz.php';
 //判断是否是部署在linux服务器

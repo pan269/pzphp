@@ -17,6 +17,8 @@ class Pz
         if(!$ini){
             $ini = APP_DIR.DS."config".DS.'config.ini';
         }
+        
+        System::LoadPlugin('Liquid','/view/liquid');
         //注册自动加载类
         spl_autoload_register('Pz::pzAutoload');
          // 设定错误和异常处理
@@ -40,7 +42,7 @@ class Pz
      */
     public static function pzAutoload($class)
     {
-        if($class == 'Controller' || $class == 'Model')
+        if($class == 'Controller' || $class == 'Model' || $class == 'View')
         {
             require PZ_DIR.DS.'core'.DS.$class.'.php';
         }

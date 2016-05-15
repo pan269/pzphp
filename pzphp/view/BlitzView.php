@@ -5,9 +5,70 @@
 class BlitzView extends Blitz 
 {
     public $time = '20150510001';
+    protected $_C;
+    protected $_A;
+    protected $_E;
+    protected $_P;
+    protected $_F;
     public function __construct()
     {
         parent::__construct();
+        $this->_C = strtolower( Register::get('router')['c']); //获取路径controller
+        $this->_A = strtolower(Register::get('router')['a']); //获取路径action
+        $this->_E = strtolower(Register::get('config')['view']['ext']); //获取文件ext
+        $this->_P = APP_DIR.DS."view".DS.$this->_C.DS;
+        $this->_F = $this->_A.$this->_E;
+    }
+
+    public function setPath($path)
+    {
+        if($path)
+        {
+            if(substr($path, 0, -1) == DS)
+            {
+                $this->_P = $path;
+            }
+            else
+            {
+                $this->_P = DS.$path;
+            }
+        }
+        # code...
+    }
+
+    public function setFile($file)
+    {
+        if($file)
+        {
+            if (substr( $file, 0, 1 ) == '.') 
+            {
+                $this->_F = $file;
+            }
+            else
+            {
+                $this->_F = '.'.$file;
+            }
+        }
+        # code...
+    }
+
+
+    public function setView($view)
+    {
+        if($view)
+        {
+            $viewname = $view."View";
+            $this->_T = new $viewname;
+        }
+        # code...
+    }
+
+    public function setParams($Params)
+    {
+        if (!empty($Params))
+        {
+            $this->assign($Params);
+        }
     }
 
     /**
@@ -40,11 +101,11 @@ class BlitzView extends Blitz
      * @param   array           $tpl_vars  (Optional)
      * @return  null || string
      */
-    public function display($path,$view_file, $tpl_vars = null)
+    public function display($tpl_vars = null)
     {
-        if (file_exists($path.$view_file))
+        if (file_exists($this->_P.$this->_F))
         {
-            $body = file_get_contents($path.$view_file);
+            $body = file_get_contents($this->_P.$this->_F);
 
             $this->load($body);
             if (is_array($tpl_vars))
